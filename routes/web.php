@@ -1,11 +1,17 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TemuTukarController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('landing');
 });
+
+
+Route::get('/temutukar', [TemuTukarController::class, 'index'])->name('temu-tukar.index');
+Route::get('/temutukar/filter-category', [TemuTukarController::class, 'filterByCategory']);
+Route::get('/temutukar/filter-distance', [TemuTukarController::class, 'filterByDistance']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

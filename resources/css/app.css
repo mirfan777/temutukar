@@ -1,3 +1,49 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+/* Tambahkan CSS ini di dalam tag <style> di bagian head */
+
+/* Animasi dasar */
+.animate-element {
+    transition: all 0.6s ease;
+  }
+  
+  /* Animasi fade-up saat elemen muncul */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  
+  /* Animasi fade-right saat elemen muncul */
+  .fade-right {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  
+  /* Animasi staggered untuk cards */
+  #features .card:nth-child(1) { transition-delay: 0.1s; }
+  #features .card:nth-child(2) { transition-delay: 0.2s; }
+  #features .card:nth-child(3) { transition-delay: 0.3s; }
+  #features .card:nth-child(4) { transition-delay: 0.4s; }
+  #features .card:nth-child(5) { transition-delay: 0.5s; }
+  #features .card:nth-child(6) { transition-delay: 0.6s; }
+  
+  #team .card:nth-child(1) { transition-delay: 0.1s; }
+  #team .card:nth-child(2) { transition-delay: 0.2s; }
+  #team .card:nth-child(3) { transition-delay: 0.3s; }
+  #team .card:nth-child(4) { transition-delay: 0.4s; }
+  #team .card:nth-child(5) { transition-delay: 0.5s; }
+  #team .card:nth-child(6) { transition-delay: 0.6s; }
+  #team .card:nth-child(7) { transition-delay: 0.7s; }
+  
+  /* Animasi hover untuk card */
+  #features .card, #team .card, #data .card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  #features .card:hover, #team .card:hover, #data .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
