@@ -1,6 +1,7 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@source "../views";
+@plugin "daisyui";
+
 
 
 /* Tambahkan CSS ini di dalam tag <style> di bagian head */

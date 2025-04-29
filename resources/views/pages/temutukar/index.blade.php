@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    @vite('resources/css/app.css')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -42,7 +41,7 @@
         }
     </style>
 </head>
-<body>
+<body class="light">
     <main>
         <div class="flex flex-col-reverse md:flex-row overflow-hidden">
             <div class="flex w-full md:w-[820px] h-screen">
@@ -199,7 +198,7 @@
         const vectorLayer = new ol.layer.Vector({
             source: new ol.source.Vector({
                 format: new ol.format.GeoJSON(),
-                url: 'http://localhost:8080/geoserver/TemuTukar/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=TemuTukar%3Aitems&outputFormat=application%2Fjson&maxFeatures=50',  // URL WFS GeoJSON
+                url: 'http://localhost:8080/geoserver/TemuTukar/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=TemuTukar%3Aitems&outputFormat=application%2Fjson&maxFeatures=50',  
             }),
             style: new ol.style.Style({
                 image: new ol.style.Icon({
