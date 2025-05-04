@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: docker/php/Dockerfile
-    container_name: laravel_app
+    container_name: temutukar_app
     volumes:
       - ./:/var/www/html
     depends_on:
