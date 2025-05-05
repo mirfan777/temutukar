@@ -1,31 +1,40 @@
-version: '3.9'
+version: '3.8'
 
 services:
   app:
     build:
       context: .
-      dockerfile: DOCKERFILE
-    container_name: temutukar_app
+      dockerfile: Dockerfile
+    image: temutukar
+    container_name: temutukar
     volumes:
-      - ./:/var/www/html
-    depends_on:
-      - db
+      - .:/var/www/html
     networks:
       - laravel
-    environment:
-      - DB_HOST=db
-      - DB_PORT=5432
-      - DB_DATABASE=temutukar
-      - DB_USERNAME=postgres
-      - DB_PASSWORD=secret
+    depends_on:
+      - db
+    expose:
+      - 9000
+
+  nginx:
+    image: nginx:stable
+    container_name: laravel_nginx
+    ports:
+      - "80:80"
+    volumes:
+      - .:/var/www/html
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - app
+    networks:
+      - laravel
 
   db:
-    image: postgis/postgis:latest
-    container_name: postgres_postgis
-    restart: always
+    image: postgis/postgis:17-3.4
+    container_name: postgres
     environment:
-      POSTGRES_DB: temutukar
-      POSTGRES_USER: postgres
+      POSTGRES_DB: laravel
+      POSTGRES_USER: laravel
       POSTGRES_PASSWORD: secret
     ports:
       - "5432:5432"
@@ -35,7 +44,7 @@ services:
       - laravel
 
   geoserver:
-    image: kartoza/geoserver
+    image: kartoza/geoserver:2.22.2
     container_name: geoserver
     ports:
       - "8080:8080"
@@ -46,20 +55,10 @@ services:
     networks:
       - laravel
 
-  npm:
-    image: node:20
-    container_name: node_build
-    working_dir: /var/www/html
-    volumes:
-      - ./:/var/www/html
-    entrypoint: [ "sh", "-c", "npm install && npm run build" ]
-    networks:
-      - laravel
+networks:
+  laravel:
+    driver: bridge
 
 volumes:
   pgdata:
   geoserver_data:
-
-networks:
-  laravel:
-    driver: bridge
